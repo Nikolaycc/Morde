@@ -1,9 +1,9 @@
+
 #include "morde.h"
 
 void morde_handles(int sig) {
-    log_error("Closing server socket and exiting...", sig);
     for (int i = 0; i < __M_instance.len; i++) {
-        close(__M_instance.server_fd[i]);
+        morde_close(__M_instance.mordes[i]);
     }
     
     exit(0);
@@ -32,6 +32,9 @@ Morde* morde_create() {
     m->fd = &__M_instance.server_fd[__M_instance.len];
     m->port = 0;
 
+    m->routes = radix_create_tree();
+    __M_instance.mordes[__M_instance.len] = m;
+    
     signal(SIGINT, morde_handles);
     log_info("Created Morde App!");
 
@@ -40,9 +43,11 @@ Morde* morde_create() {
 }
 
 void morde_close(Morde* m) {
+    log_error("Closing server socket and exiting...");
     for (int i = 0; i < __M_instance.len; i++) {
         close(__M_instance.server_fd[i]);
     }
+    radix_delete_tree(m->routes);
     free(m);
 }
 

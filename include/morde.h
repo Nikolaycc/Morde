@@ -44,16 +44,18 @@ typedef struct RadixTree {
 } RadixTree;
 
 typedef struct {
+    int* fd;
+    int port;
+    RadixTree* routes;
+} Morde;
+
+typedef struct {
     int server_fd[MORDE_SERV_MAX];
     size_t len;
+    Morde* mordes[MORDE_SERV_MAX];
 } MordeInstance;
 
 static MordeInstance __M_instance;
-
-typedef struct {
-    int* fd;
-    int port;
-} Morde;
 
 void morde_error(const char *msg);
 
