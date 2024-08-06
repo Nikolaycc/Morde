@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libmorde.a CMakeFiles/morde.dir/morde.c.o CMakeFiles/morde.dir/log.c.o
-/usr/bin/ranlib ../lib/libmorde.a
