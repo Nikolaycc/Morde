@@ -1,0 +1,8 @@
+/home/octar/Work/Morde/build/CMakeFiles/edit_cache.dir
+/home/octar/Work/Morde/build/CMakeFiles/rebuild_cache.dir
+/home/octar/Work/Morde/build/src/CMakeFiles/morde.dir
+/home/octar/Work/Morde/build/src/CMakeFiles/edit_cache.dir
+/home/octar/Work/Morde/build/src/CMakeFiles/rebuild_cache.dir
+/home/octar/Work/Morde/build/tests/CMakeFiles/test_main.dir
+/home/octar/Work/Morde/build/tests/CMakeFiles/edit_cache.dir
+/home/octar/Work/Morde/build/tests/CMakeFiles/rebuild_cache.dir
