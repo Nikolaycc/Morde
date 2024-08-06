@@ -26,7 +26,7 @@ Morde* morde_create() {
     assert(__M_instance.len < MORDE_SERV_MAX);
     __M_instance.server_fd[__M_instance.len] = socket(AF_INET, SOCK_STREAM, 0);
     if (__M_instance.server_fd[__M_instance.len] == -1)
-        morde_error("ERR: Socket creation failed."); 
+        morde_error("Socket creation failed."); 
 
     Morde* m = (Morde*) malloc(sizeof(Morde));
     m->fd = &__M_instance.server_fd[__M_instance.len];
@@ -68,13 +68,13 @@ int morde_run(Morde* m, const char* addr, int port) {
     inet_aton(addr, (struct in_addr *)&servaddr.sin_addr.s_addr);
 
     if (setsockopt(*m->fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0)
-        morde_error("ERR: Setting socket options failed.");
+        morde_error("Setting socket options failed.");
     
     if ((bind(*m->fd, (struct sockaddr*)&servaddr, sizeof(servaddr))) != 0) 
-        morde_error("ERR: Socket bind failed."); 
+        morde_error("Socket bind failed."); 
 
     if ((listen(*m->fd, 5)) != 0)
-        morde_error("ERR: Listen failed.");
+        morde_error("Listen failed.");
 
     int len = sizeof(cliaddr); 
 
@@ -83,12 +83,12 @@ int morde_run(Morde* m, const char* addr, int port) {
         pthread_t thread_id;
         int connfd = accept(*m->fd, (struct sockaddr*)&cliaddr, &len); 
         if (connfd < 0) {
-            morde_error("ERR: Server accept failed.");
+            morde_error("Server accept failed.");
         }
 
         void* arg = &connfd;
         if (pthread_create(&thread_id, NULL, morde_handlec, arg) < 0) {
-            morde_error("ERR: Thread creation failed.");
+            morde_error("Thread creation failed.");
         }
             
         pthread_detach(thread_id);
